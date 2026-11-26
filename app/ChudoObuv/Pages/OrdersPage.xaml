@@ -1,0 +1,56 @@
+<Page x:Class="ChudoObuv.Pages.OrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Заказы"
+      FontFamily="Calibri" FontSize="15"
+      Background="{StaticResource MainBackgroundBrush}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,8">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <Button Content="Обновить" Click="Refresh_Click" />
+                <Button x:Name="DeleteButton" Content="Удалить заказ" Click="Delete_Click" />
+                <Button x:Name="EditButton" Content="Редактировать" Click="Edit_Click" />
+                <Button Content="В каталог" Click="Catalog_Click" />
+            </StackPanel>
+            <TextBlock Text="Список заказов" FontSize="22" FontWeight="Bold"
+                       VerticalAlignment="Center" />
+        </DockPanel>
+
+        <ListView Grid.Row="1" x:Name="OrdersListView" SelectionChanged="Orders_SelectionChanged"
+                  BorderThickness="0" Background="Transparent">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="№" Width="70" DisplayMemberBinding="{Binding OrderId}" />
+                    <GridViewColumn Header="Дата заказа" Width="130" DisplayMemberBinding="{Binding DateText}" />
+                    <GridViewColumn Header="ФИО клиента" Width="340" DisplayMemberBinding="{Binding ClientName}" />
+                    <GridViewColumn Header="Позиций" Width="110" DisplayMemberBinding="{Binding PositionCount}" />
+                    <GridViewColumn Header="Пар обуви" Width="120" DisplayMemberBinding="{Binding ItemsCount}" />
+                    <GridViewColumn Header="Сумма" Width="150" DisplayMemberBinding="{Binding TotalText}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock Grid.Row="2" x:Name="CompositionTitle" FontSize="18" FontWeight="Bold"
+                   Margin="0,10,0,6" Text="Состав заказа" />
+
+        <ListView Grid.Row="3" x:Name="CompositionListView" Height="230"
+                  BorderThickness="0" Background="Transparent">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Товар" Width="520" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Размер" Width="100" DisplayMemberBinding="{Binding SizeText}" />
+                    <GridViewColumn Header="Кол-во" Width="90" DisplayMemberBinding="{Binding Quantity}" />
+                    <GridViewColumn Header="Цена" Width="130" DisplayMemberBinding="{Binding UnitPrice}" />
+                    <GridViewColumn Header="Сумма" Width="140" DisplayMemberBinding="{Binding SumText}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
